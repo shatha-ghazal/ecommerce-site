@@ -1,5 +1,5 @@
 <?php
-require_once 'dbe.php';
+require_once 'db.php';
 requireLogin();
 
 // calculate cart and total
