@@ -5,7 +5,7 @@ session_start();
 }
 
 // Dynamically use Render variables if they exist, otherwise use your local defaults
-$servername = getenv('DB_HOST') ?: "localhost";
+$servername = getenv('DB_HOST') ?: "dpg-d8irvat8nd3s73dtrecg-a";
 $database = getenv('DB_NAME') ?: "ecommerce";
 $username = getenv('DB_USER') ?: "root";
 $password = getenv('DB_PASS') !== false ? getenv('DB_PASS') : "";
