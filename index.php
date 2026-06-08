@@ -13,6 +13,8 @@ $stmt = $conn->prepare("
 $stmt->execute([
     ':search' => "%$search%"
 ]);
+
+$products = $stmt->fetchAll(PDO::FETCH_ASSOC);
 ?>
 
 <!doctype html>
@@ -27,36 +29,36 @@ $stmt->execute([
 
 <?php include 'header.php'; ?>
 
-<div style="background-image:url('b_1.jpg'); height:450px; background-size:cover; background-position:center;">
-    <p class="h" style="float:right; font-size:79px;margin-right:170px;">
-        Welcome to<br> Phone Hub
-    </p>
+<div style="background-image:url('b_1.jpg'); height:450px; width:100%; background-size:cover; background-position:center;">
+  <p class="h" style="float:right; font-size:79px;margin-right:170px;">
+    Welcome to<br> Phone Hub
+  </p>
 </div>
 
 <div class="container">
-    <div class="products-grid">
+  <div class="products-grid">
 
-        <?php while ($p = $stmt->fetch(PDO::FETCH_ASSOC)): ?>
+    <?php foreach ($products as $p): ?>
 
-            <div class="product-card">
+      <div class="product-card">
 
-                <img style="height:170px;width:199px;padding:10px"
-                     src="<?= htmlspecialchars($p['image'] ?: 'https://via.placeholder.com/300x200?text=No+Image') ?>"
-                     alt="<?= htmlspecialchars($p['name']) ?>">
+        <img style="height:170px;width:199px;padding:10px"
+             src="<?= htmlspecialchars($p['image'] ?: 'https://via.placeholder.com/300x200?text=No+Image') ?>"
+             alt="<?= htmlspecialchars($p['name']) ?>">
 
-                <h3><?= htmlspecialchars($p['name']) ?></h3>
+        <h3><?= htmlspecialchars($p['name']) ?></h3>
 
-                <p>$<?= number_format((float)$p['price'], 2) ?></p>
+        <p>$<?= number_format((float)$p['price'], 2) ?></p>
 
-                <a class="btn" href="product.php?id=<?= $p['id'] ?>">
-                    View
-                </a>
+        <a class="btn" href="product.php?id=<?= $p['id'] ?>">
+          View
+        </a>
 
-            </div>
+      </div>
 
-        <?php endwhile; ?>
+    <?php endforeach; ?>
 
-    </div>
+  </div>
 </div>
 
 <?php include 'footer.php'; ?>
