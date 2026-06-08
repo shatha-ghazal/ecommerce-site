@@ -1,11 +1,19 @@
 <?php
 session_start();
 
+/* -----------------------------
+   ENV VARIABLES (Railway)
+------------------------------*/
 $host = getenv('MYSQLHOST');
 $db   = getenv('MYSQLDATABASE');
 $user = getenv('MYSQLUSER');
 $pass = getenv('MYSQLPASSWORD');
 $port = getenv('MYSQLPORT');
+
+/* -----------------------------
+   OPTIONAL APP PORT (Railway web server)
+------------------------------*/
+$appPort = getenv('PORT') ?: 8000;
 
 try {
     $conn = new PDO(
