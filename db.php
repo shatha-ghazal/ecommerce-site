@@ -1,21 +1,14 @@
 <?php
 session_start();
 
-/* -----------------------------
-   RENDER ENV VARIABLES
-------------------------------*/
-$host = getenv('DB_HOST');
-$db   = getenv('DB_NAME');
-$user = getenv('DB_USER');
-$pass = getenv('DB_PASSWORD');
-$port = getenv('DB_PORT') ?: 3306;
+$host = "fdb1032.awardspace.net";
+$db   = "4766581_ecommerce";
+$user = "4766581_ecommerce";
+$pass = "abcabc123*";
 
-/* -----------------------------
-   PDO CONNECTION
-------------------------------*/
 try {
     $conn = new PDO(
-        "mysql:host=$host;port=$port;dbname=$db;charset=utf8mb4",
+        "mysql:host=$host;dbname=$db;charset=utf8mb4",
         $user,
         $pass
     );
