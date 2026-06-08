@@ -2,19 +2,17 @@
 session_start();
 
 /* -----------------------------
-   ENV VARIABLES (Railway)
+   RENDER ENV VARIABLES
 ------------------------------*/
-$host = getenv('MYSQLHOST');
-$db   = getenv('MYSQLDATABASE');
-$user = getenv('MYSQLUSER');
-$pass = getenv('MYSQLPASSWORD');
-$port = getenv('MYSQLPORT');
+$host = getenv('DB_HOST');
+$db   = getenv('DB_NAME');
+$user = getenv('DB_USER');
+$pass = getenv('DB_PASSWORD');
+$port = getenv('DB_PORT') ?: 3306;
 
 /* -----------------------------
-   OPTIONAL APP PORT (Railway web server)
+   PDO CONNECTION
 ------------------------------*/
-$appPort = getenv('PORT') ?: 8000;
-
 try {
     $conn = new PDO(
         "mysql:host=$host;port=$port;dbname=$db;charset=utf8mb4",
@@ -27,4 +25,3 @@ try {
 } catch (PDOException $e) {
     die("DB connection failed: " . $e->getMessage());
 }
-?>
