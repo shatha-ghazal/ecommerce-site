@@ -1,10 +1,10 @@
 <?php
 session_start();
 
-$host = "fdb1032.awardspace.net";
-$db   = "4766581_ecommerce";
-$user = "4766581_ecommerce";
-$pass = "abcabc123*";
+$host = "localhost";
+$db   = "ecommerce";
+$user = "root";
+$pass = "";
 
 try {
     $conn = new PDO(
